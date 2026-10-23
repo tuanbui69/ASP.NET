@@ -1,0 +1,110 @@
+@model IEnumerable<Day2_BuiDinhTuan.Models.Student>
+
+@{
+    ViewData["Title"] = "Partial View & ViewComponent";
+}
+
+<div class="container my-4">
+    <!-- TIÊU ĐỀ TRANG TỐI GIẢN -->
+    <div class="border-bottom pb-2 mb-4">
+        <h4 class="fw-bold text-dark mb-1">So sánh Partial View & ViewComponent</h4>
+        <p class="text-secondary small mb-0">Minh họa sự khác biệt giữa khối giao diện phụ thuộc và thành phần tự chủ độc lập.</p>
+    </div>
+
+    <!-- KHỐI SO SÁNH 2 CỘT -->
+    <div class="row g-4 mb-4">
+        
+        <!-- 1. PARTIAL VIEW -->
+        <div class="col-lg-7">
+            <div class="card h-100 border">
+                <div class="card-header bg-white border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-dark">1. Partial View</span>
+                    <span class="text-muted small">Phụ thuộc Model cha</span>
+                </div>
+                <div class="card-body p-3">
+                    <p class="text-secondary small mb-3">
+                        Dữ liệu nhận từ <code>ComponentsDemoController</code> qua Model <code>IEnumerable&lt;Student&gt;</code>. Không có class C# riêng.
+                    </p>
+
+                    <div class="row g-3 mb-3">
+                        @foreach (var student in Model)
+                        {
+                            <div class="col-md-6">
+                                <partial name="_StudentCardPartial" model="student" />
+                            </div>
+                        }
+                    </div>
+
+                    <div class="p-2 bg-light rounded border text-muted small">
+                        <div class="fw-semibold text-dark mb-1">Cú pháp nhúng trong Razor:</div>
+                        <code>&lt;partial name="_StudentCardPartial" model="student" /&gt;</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. VIEWCOMPONENT -->
+        <div class="col-lg-5">
+            <div class="card h-100 border">
+                <div class="card-header bg-white border-bottom py-2 d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-dark">2. ViewComponent</span>
+                    <span class="text-muted small">Tự chủ &amp; Có logic C#</span>
+                </div>
+                <div class="card-body p-3">
+                    <p class="text-secondary small mb-3">
+                        Có file <code>QuickStatsViewComponent.cs</code> độc lập, tự tính toán dữ liệu mà không cần Controller cha truyền vào.
+                    </p>
+
+                    <div class="mb-3">
+                        <vc:quick-stats title="Bảng điều khiển máy chủ"></vc:quick-stats>
+                    </div>
+
+                    <div class="p-2 bg-light rounded border text-muted small">
+                        <div class="fw-semibold text-dark mb-1">Cú pháp gọi trong Razor:</div>
+                        <code>&lt;vc:quick-stats title="..."&gt;&lt;/vc:quick-stats&gt;</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BẢNG ĐỐI CHIẾU TỐI GIẢN -->
+    <div class="card border">
+        <div class="card-header bg-white border-bottom py-2">
+            <span class="fw-semibold text-dark">Bảng đối chiếu kỹ thuật</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 20%">Tiêu chí</th>
+                        <th style="width: 40%">Partial View</th>
+                        <th style="width: 40%">ViewComponent</th>
+                    </tr>
+                </thead>
+                <tbody class="small">
+                    <tr>
+                        <td class="fw-semibold">Cấu trúc file</td>
+                        <td>Chỉ gồm file <code>.cshtml</code>.</td>
+                        <td>Class C# (kế thừa <code>ViewComponent</code>) + file <code>Default.cshtml</code>.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Xử lý logic</td>
+                        <td>Phụ thuộc hoàn toàn vào dữ liệu do View cha truyền vào.</td>
+                        <td>Tự xử lý logic và truy vấn độc lập trong <code>InvokeAsync()</code>.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Dependency Injection</td>
+                        <td>Hạn chế (chỉ dùng cú pháp <code>@@inject</code> trong view).</td>
+                        <td>Hỗ trợ đầy đủ qua Constructor Injection.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Ứng dụng phù hợp</td>
+                        <td>Tái sử dụng HTML: Card sản phẩm, modal popup, thanh phân trang.</td>
+                        <td>Thành phần động: Giỏ hàng mini, menu động từ DB, widget thống kê.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@model Day2_BuiDinhTuan.Models.Student
+
+@*
+    PARTIAL VIEW: _StudentCardPartial.cshtml
+    Thiết kế tối giản: Sử dụng viền xám nhẹ, tone màu đen trắng trung tính.
+*@
+
+<div class="card h-100 border">
+    <div class="card-body p-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small">MSSV: @Model.StudentCode</span>
+            <span class="badge bg-light text-dark border fw-normal">Partial View</span>
+        </div>
+        <h6 class="card-title fw-bold text-dark mb-1">@Model.FullName</h6>
+        <p class="card-text text-secondary small mb-2">
+            Chuyên ngành: @Model.Major
+        </p>
+        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+            <span class="small text-muted">GPA:</span>
+            <span class="fw-semibold text-dark">@Model.Gpa.ToString("0.00") / 4.0</span>
+        </div>
+    </div>
+</div>

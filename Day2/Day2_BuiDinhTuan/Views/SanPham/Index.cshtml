@@ -1,0 +1,36 @@
+@model IEnumerable<Day2_BuiDinhTuan.Controllers.SanPhamController.SanPhamModel>
+
+@{
+    ViewData["Title"] = "Danh sach san pham";
+}
+
+<div class="my-4">
+    <h2>Danh sach san pham (Attribute Routing)</h2>
+    <p>Controller su dung: <span style="color: #d63384;">[Route("san-pham")]</span></p>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 10%;">Ma SP</th>
+                <th style="width: 40%;">Ten san pham</th>
+                <th style="width: 25%;">Giang vien</th>
+                <th style="width: 15%;">Trang thai</th>
+                <th style="width: 10%;">Hanh dong</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaSP</td>
+                    <td>@item.TenSanPham</td>
+                    <td>@item.GiangVien</td>
+                    <td>@item.TrangThai</td>
+                    <td><a href="/san-pham/chi-tiet/@item.MaSP">Chi tiet</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <partial name="_ThongTinSinhVien" />
+</div>

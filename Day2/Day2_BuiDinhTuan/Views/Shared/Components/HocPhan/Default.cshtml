@@ -1,0 +1,24 @@
+@model IEnumerable<Day2_BuiDinhTuan.Models.HocPhanItem>
+
+<div class="card mb-3">
+    <div class="card-header bg-light">
+        <strong>ViewComponent:</strong> @ViewBag.ComponentTitle
+    </div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ps-3 py-2">
+                            #@item.Id - @item.TenHocPhan (@item.BoMon)
+                        </td>
+                        <td class="text-end pe-3 py-2 text-muted">
+                            @item.TrangThai
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

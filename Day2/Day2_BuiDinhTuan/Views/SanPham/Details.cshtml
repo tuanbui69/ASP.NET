@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Chi tiet san pham";
+}
+
+<div class="my-4">
+    <h2>Chi tiet san pham (Attribute Routing)</h2>
+    <p class="mb-3">Action su dung: <span style="color: #d63384;">[HttpGet("chi-tiet/{id:int}")]</span></p>
+
+    <p class="mb-3"><strong>Ma san pham:</strong> @ViewData["MaSP"]</p>
+
+    <p class="mb-4"><a href="/san-pham">Quay lai danh sach</a></p>
+
+    @await Component.InvokeAsync("HocPhan", new { title = "Danh sach hoc phan lien quan" })
+</div>

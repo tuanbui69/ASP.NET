@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="my-4">
+    <h2>Welcome</h2>
+    <p>Dinh tuyen bang Custom Conventional Route: <span style="color: #d63384;">/chao-mung/{name}/{id}</span></p>
+
+    <ul>
+        @for (int i = 1; i <= (int)ViewData["ID"]!; i++)
+        {
+            <li>Xin chao @ViewData["Name"] (lan @i)</li>
+        }
+    </ul>
+
+    <partial name="_ThongTinSinhVien" />
+</div>

@@ -1,0 +1,12 @@
+## Visual Studio / .NET Core gitignore
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+Thumbs.db
+ehthumbs.db
+Desktop.ini
