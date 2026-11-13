@@ -7,6 +7,15 @@ namespace Bai3_Dinh_Tuan.Controllers
 {
     public class CategoryController : Controller
     {
+        //ILogger<CategoryController> _logger
+        private readonly ILogger<CategoryController> _logger;
+
+        //public CategoryController(ILogger<CategoryController> logger)
+        public CategoryController(ILogger<CategoryController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: CategoryController
         public ActionResult Index()
         {
@@ -14,9 +23,17 @@ namespace Bai3_Dinh_Tuan.Controllers
         }
 
         // GET: CategoryControllẻ/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details([FromRoute] int id)
         {
-            return View();
+            _logger.LogInformation("Fetching details for category with ID: {Id}", id);
+            _logger.LogError("This is a test error log for category ID: {Id}", id);
+            //lấy ra category có id tương ứng từ danh sách truyền vào từ SeedData
+            var category = SeedData.categories.FirstOrDefault(c => c.Id == id);
+            if (category == null)
+            {
+                return NotFound(); //nếu không tìm thấy category thì trả về NotFound
+            }
+            return View(category);
         }
 
         // GET: CategoryControllẻ/Create

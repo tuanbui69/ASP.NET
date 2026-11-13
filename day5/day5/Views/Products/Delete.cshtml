@@ -1,0 +1,21 @@
+﻿@model day5.Models.Product
+
+<h2>Xóa sản phẩm</h2>
+<h4>Bạn có chắc chắn muốn xóa sản phẩm này?</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Tên sản phẩm:</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Giá bán:</dt>
+        <dd class="col-sm-10">@Model.Price.ToString("N0") VNĐ</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
