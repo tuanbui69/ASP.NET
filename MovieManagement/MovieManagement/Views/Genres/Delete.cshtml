@@ -1,0 +1,11 @@
+﻿@model MovieManagement.Models.Genre
+
+<div class="container mt-4">
+    <h2>Delete Genre</h2>
+    <p class="text-danger">Xóa thể loại: <strong>@Model.Name</strong>?</p>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

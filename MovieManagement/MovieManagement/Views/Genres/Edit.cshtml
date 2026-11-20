@@ -1,0 +1,15 @@
+﻿@model MovieManagement.Models.Genre
+
+<div class="container mt-4">
+    <h2>Edit Genre</h2>
+    <form asp-action="Edit" class="col-md-4">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</div>
